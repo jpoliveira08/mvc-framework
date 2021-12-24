@@ -36,7 +36,7 @@ class Router
      *
      * @return array
      */
-    public function getRoutes()
+    public function getRoutes(): array
     {
         return $this->routes;
     }
@@ -46,18 +46,26 @@ class Router
      * property if a route is found
      *
      * @param string $url The route URL
-     * 
+     *
      * @return boolean true if a match found, false otherwise
      */
-    public function match($url)
+    public function match($url): bool
     {
-        foreach ($this->routes as $route => $params) {
-            if ($url == $route) {
-                $this->params = $params;
-                return true;
+        //Match to the fixed URL format /controller/action
+        $reg_exp = "/^(?<controller>[a-z-]+)\/(?P<action>[a-z-]+)$/";
+
+        if (preg_match($reg_exp, $url, $matches)) {
+            //Get named capture group values
+            $params = [];
+
+            foreach ($matches as $key => $match) {
+                if (is_string($key)) {
+                    $params[$key] = $match;
+                }
             }
         }
-        return false;
+        $this->params = $params;
+        return true;
     }
     
     /**
@@ -65,7 +73,7 @@ class Router
      *
      * @return array
      */
-    public function getParams()
+    public function getParams(): array
     {
         return $this->params;
     }
