@@ -3,7 +3,8 @@
  * Front controller
  */
 
- 
+// Require the controller class
+require '../App/Controller/Posts.php';
 
 /**
  * Routing
@@ -12,16 +13,19 @@ require_once '../Core/Router.php';
 
 $router = new Router();
 
+
 // Add the routes
+/*
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('posts', ['controller' => 'Posts', 'action' => 'index']);
 //$router->add('posts/new', ['controller' => 'Posts', 'action' => 'new']);
+*/
 //Adding routes with variable parts
+$router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('{controller}/{action}');
-$router->add('admin/{action}/{controller}');
 $router->add('{controller}/{id:\d+}/{action}');
 
-
+/*
 // Match the requested route
 $url = $_SERVER['QUERY_STRING'];
 
@@ -36,3 +40,5 @@ if ($router->match($url)) {
 }else {
     echo "No route found for URL '$url'";
 }
+*/
+$router->dispatch($_SERVER['QUERY_STRING']);
