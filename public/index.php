@@ -5,6 +5,11 @@
  * PHP version 5.4
  */
 
+
+ /**
+  * Twig
+  */
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 /**
  * Autoloader
  */
