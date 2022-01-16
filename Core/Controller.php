@@ -7,7 +7,7 @@ namespace Core;
  */
 abstract class Controller
 {
-    /* Parameters from the matched route */
+    /** @var array $route_params contains parameters from the matched route */
     protected $route_params = [];
 
     /**
@@ -16,7 +16,7 @@ abstract class Controller
      * @param [type] $route_params Parameters from the route
      * 
      */
-    public function __construct($route_params)
+    public function __construct(array $route_params)
     {
         $this->route_params = $route_params;
     }
@@ -32,7 +32,7 @@ abstract class Controller
      *
      * @return void
      */
-    public function __call($name, $args): void
+    public function __call(string $name, array $args): void
     {
         $method = $name . 'Action';
 
@@ -42,7 +42,7 @@ abstract class Controller
                 $this->after();
             }
         } else {
-            echo "Method $method not found in controller " . get_class($this);
+            throw new \Exception("Method $method not found in controller " . get_class($this));
         }
     }
 

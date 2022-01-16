@@ -2,15 +2,16 @@
 
 namespace App\Controllers;
 
-use Core\Controller;
-use Core\View;
+use Core\{View, Controller};
 use App\Models\Post;
 
 /**
  * Posts controller
+ *
  */
 class Posts extends Controller
 {
+
     /**
      * Show the index page
      *
@@ -19,7 +20,7 @@ class Posts extends Controller
     public function indexAction(): void
     {
         $posts = Post::getAll();
-        //echo "Hello from the index action in the Posts controller";
+
         View::renderTemplate('Posts/index.html', [
             'posts' => $posts
         ]);
@@ -32,12 +33,18 @@ class Posts extends Controller
      */
     public function addNewAction(): void
     {
-        echo "Helloo from the addNew action in the Posts controller!";
+        echo 'Hello from the addNew action in the Posts controller!';
     }
-
-    public function editAction()
+    
+    /**
+     * Show the edit page
+     *
+     * @return void
+     */
+    public function editAction(): void
     {
         echo 'Hello from the edit action in the Posts controller!';
-        echo '<p>Route parameters <pre>' . htmlspecialchars(print_r($this->route_params, true)) . '</pre></p>';
+        echo '<p>Route parameters: <pre>' .
+             htmlspecialchars(print_r($this->route_params, true)) . '</pre></p>';
     }
 }

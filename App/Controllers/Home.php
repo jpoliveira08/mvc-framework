@@ -8,7 +8,6 @@ use Core\View;
 /**
  * Home controller
  * 
- * 
  */
 class Home extends Controller
 {
@@ -40,11 +39,6 @@ class Home extends Controller
      */
     public function indexAction(): void
     {
-        //echo 'Hello from the index action in the Home controller!';
-        //View::render('Home/index.php', [
-        //    'name' => 'Dave',
-        //    'colours' => ['red', 'green', 'blue']
-        //]);
         View::renderTemplate('Home/index.html', [
             'name' => 'Dave',
             'colours' => ['red', 'green', 'blue']
